@@ -38,7 +38,6 @@ test('downloads should return the correct path for each OS', function (t) {
   const { downloads: dir } = getUserDirsSync()
   const homeDir = require('os').homedir()
 
-  console.log('dir:', dir)
   if (isWindows) {
     t.ok(dir.includes('Downloads'))
   } else if (isMac) {
@@ -53,9 +52,7 @@ test('downloads should return the correct path for each OS', function (t) {
         return defaultPath
       }
     }
-    console.log('defaultPath:', defaultPath)
     const xdg = xdgPath()
-    console.log('xdgPath:', xdg)
     t.ok(dir === defaultPath || dir === xdg)
   } else {
     t.fail('Unknown OS')
@@ -81,9 +78,7 @@ test('downloads should return the correct path for each OS asynchronously', asyn
         return defaultPath
       }
     }
-    console.log('defaultPath:', defaultPath)
     const xdg = xdgPath()
-    console.log('xdgPath:', xdg)
     t.ok(dir === defaultPath || dir === xdg)
   } else {
     t.fail('Unknown OS')
