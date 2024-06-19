@@ -46,7 +46,7 @@ function getDownloadsPathAsync () {
   if (isWindows) {
     return new Promise((resolve, reject) => {
       const regQuery = ['QUERY', REG_KEY, '/v', GUID_DOWNLOADS]
-      const subprocess = spawn('C:\\Windows\\System32\\reg.exe', regQuery, { stdio: 'pipe' })
+      const subprocess = spawn(REG_EXE, regQuery, { stdio: 'pipe' })
 
       let stdout = ''
       subprocess.stdout.on('data', data => { stdout += data.toString() })
