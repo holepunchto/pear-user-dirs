@@ -47,12 +47,13 @@ test('downloads should return the correct path for each OS', function (t) {
     const xdgPath = () => {
       try {
         const result = spawnSync('xdg-user-dir', ['DOWNLOAD'], { stdio: 'pipe' })
-        return result.stdout.trim()
+        return result.stdout.toString().trim()
       } catch (e) {
         return defaultPath
       }
     }
-    t.ok(dir === defaultPath || dir === xdgPath())
+    const xdg = xdgPath()
+    t.ok(dir === defaultPath || dir === xdg)
   } else {
     t.fail('Unknown OS')
   }
@@ -72,12 +73,13 @@ test('downloads should return the correct path for each OS asynchronously', asyn
     const xdgPath = () => {
       try {
         const result = spawnSync('xdg-user-dir', ['DOWNLOAD'], { stdio: 'pipe' })
-        return result.stdout.trim()
+        return result.stdout.toString().trim()
       } catch (e) {
         return defaultPath
       }
     }
-    t.ok(dir === defaultPath || dir === xdgPath())
+    const xdg = xdgPath()
+    t.ok(dir === defaultPath || dir === xdg)
   } else {
     t.fail('Unknown OS')
   }
