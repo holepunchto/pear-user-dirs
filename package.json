@@ -1,6 +1,6 @@
 {
   "name": "pear-user-dirs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get the path of user-specific directories",
   "main": "index.js",
   "scripts": {
