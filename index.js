@@ -6,10 +6,11 @@ const { spawn, spawnSync } = require('child_process')
 const { isWindows, isMac, isBare } = require('which-runtime')
 const { pathToFileURL } = require('url-file-url')
 
-const SYSTEM_DRIVE = isBare ? require('bare-env').SystemDrive : process.env.SystemDrive
 const HOME_DIR = require('os').homedir()
 const DEFAULT_PATH = path.join(HOME_DIR, 'Downloads')
-const REG_EXE = isWindows ? path.join(SYSTEM_DRIVE, 'Windows', 'System32', 'reg.exe') : null
+
+const WIN_DIR = isWindows ? isBare ? require('bare-env').windir : process.env.windir : null
+const REG_EXE = isWindows ? path.join(WIN_DIR, 'System32', 'reg.exe') : null
 const REG_KEY = 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders'
 const GUID_DOWNLOADS = '{374DE290-123F-4565-9164-39C4925E467B}'
 
