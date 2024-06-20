@@ -11,30 +11,30 @@ npm install pear-user-dirs
 Use `pear-user-dirs` to get the Downloads directory:
 
 ```js
-const getUserDirs = require('pear-user-dirs')
+const pearUserDirs = require('pear-user-dirs')
 
-getUserDirs().then(dirs => {
+pearUserDirs().then(dirs => {
   console.log('Downloads folder path:', dirs.downloads)
 })
 
-getUserDirs({ asFileLinks: true }).then(dirs => {
+pearUserDirs({ asFileLinks: true }).then(dirs => {
   console.log('Downloads folder path as URL:', dirs.downloads)
 })
 ```
 
 ```js
-const getUserDirs = require('pear-user-dirs')
+const pearUserDirs = require('pear-user-dirs')
 
-const dirs = getUserDirs({ sync: true })
+const dirs = pearUserDirs({ sync: true })
 console.log('Downloads folder path:', dirs.downloads)
 
-const dirsURL = getUserDirs({ sync: true, asFileLinks: true })
+const dirsURL = pearUserDirs({ sync: true, asFileLinks: true })
 console.log('Downloads folder path as URL:', dirsURL.downloads)
 ```
 
 ## API
 
-### `getUserDirs(opts)`
+### `pearUserDirs(opts)`
 
 - `opts`:
   - `sync` (boolean): If `true`, directly returns an object with the paths of the user directories, otherwise returns a Promise. Default is `false`.

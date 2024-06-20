@@ -90,22 +90,22 @@ function getDownloadsPathAsync () {
   })
 }
 
-function getUserDirsSync (opts) {
+function pearUserDirsSync (opts) {
   const downloadsPath = getDownloadsPathSync()
   return {
     downloads: opts.asFileLinks ? pathToFileURL(downloadsPath).href : downloadsPath
   }
 }
 
-async function getUserDirsAsync (opts) {
+async function pearUserDirsAsync (opts) {
   const downloadsPath = await getDownloadsPathAsync()
   return {
     downloads: opts.asFileLinks ? pathToFileURL(downloadsPath).href : downloadsPath
   }
 }
 
-module.exports = function getUserDirs ({ sync = false, asFileLinks = false } = {}) {
+module.exports = function pearUserDirs ({ sync = false, asFileLinks = false } = {}) {
   const opts = { sync, asFileLinks }
-  if (opts.sync) return getUserDirsSync(opts)
-  return getUserDirsAsync(opts)
+  if (opts.sync) return pearUserDirsSync(opts)
+  return pearUserDirsAsync(opts)
 }
