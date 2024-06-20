@@ -24,8 +24,7 @@ function getDownloadsPathSync () {
       if (match && match[1]) {
         return path.resolve(match[1].trim().replace(/%USERPROFILE%/g, HOME_DIR))
       }
-    } catch (_) { }
-    return DEFAULT_PATH
+    } catch { return DEFAULT_PATH }
   }
 
   if (isMac) return DEFAULT_PATH
@@ -34,13 +33,12 @@ function getDownloadsPathSync () {
     const result = spawnSync('xdg-user-dir', ['DOWNLOAD'], { stdio: 'pipe' })
     const downloadsPath = result.stdout.toString().trim()
     if (downloadsPath) return downloadsPath
-  } catch (_) { }
+  } catch { /* ignore */ }
 
   try {
     fs.statSync(DEFAULT_PATH)
     return DEFAULT_PATH
-  } catch (_) { }
-  return '/tmp'
+  } catch { return '/tmp' }
 }
 
 function getDownloadsPathAsync () {
@@ -53,7 +51,7 @@ function getDownloadsPathAsync () {
       subprocess.stdout.on('data', data => { stdout += data.toString() })
 
       subprocess.on('exit', code => {
-        if (code !== 0) return reject(new Error(`Child process exited with code ${code}`))
+        if (code !== 0) return reject(new Error(`Subprocess exited with code ${code}`))
         const match = stdout.match(/REG_\w+\s+(.*)/)
         if (match && match[1]) {
           resolve(path.resolve(match[1].trim().replace(/%USERPROFILE%/g, HOME_DIR)))
@@ -78,8 +76,7 @@ function getDownloadsPathAsync () {
       try {
         fs.statSync(DEFAULT_PATH)
         resolve(DEFAULT_PATH)
-      } catch (_) { }
-      resolve('/tmp')
+      } catch { resolve('/tmp') }
     }
 
     subprocess.on('exit', code => {
@@ -107,7 +104,8 @@ async function getUserDirsAsync (opts) {
   }
 }
 
-module.exports = function getUserDirs (opts = { sync: false, asFileLinks: false }) {
+module.exports = function getUserDirs ({ sync = false, asFileLinks = false } = {}) {
+  const opts = { sync, asFileLinks }
   if (opts.sync) return getUserDirsSync(opts)
   return getUserDirsAsync(opts)
 }

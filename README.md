@@ -34,7 +34,7 @@ console.log('Downloads folder path as URL:', dirsURL.downloads)
 
 ## API
 
-### `getUserDirs(opts = { sync: false, asFileLinks: false })`
+### `getUserDirs(opts)`
 
 - `opts`:
   - `sync` (boolean): If `true`, directly returns an object with the paths of the user directories, otherwise returns a Promise. Default is `false`.
