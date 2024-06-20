@@ -17,35 +17,28 @@ getUserDirs().then(dirs => {
   console.log('Downloads folder path:', dirs.downloads)
 })
 
-getUserDirs({ asFileURL: true }).then(dirs => {
+getUserDirs({ asFileLinks: true }).then(dirs => {
   console.log('Downloads folder path as URL:', dirs.downloads)
 })
 ```
 
 ```js
-const getUserDirsSync = require('pear-user-dirs').sync
+const getUserDirs = require('pear-user-dirs')
 
-const dirs = getUserDirsSync()
+const dirs = getUserDirs({ sync: true })
 console.log('Downloads folder path:', dirs.downloads)
 
-const dirsURL = getUserDirsSync({ asFileURL: true })
+const dirsURL = getUserDirs({ sync: true, asFileLinks: true })
 console.log('Downloads folder path as URL:', dirsURL.downloads)
 ```
 
 ## API
 
-### `getUserDirs(opts = { asFileURL: false })`
-
-- **Asynchronous Version (`getUserDirs`)**:
-  - Returns a Promise that resolves to an object with the paths of the user directories.
-  - If the `asFileURL` option is set to `true`, it returns the path as a file URL.
-
-- **Synchronous Version (`getUserDirsSync`)**:
-  - Directly returns an object with the paths of the user directories.
-  - If the `asFileURL` option is set to `true`, it returns the path as a file URL.
+### `getUserDirs(opts)`
 
 - `opts`:
-  - `asFileURL` (boolean): If `true`, returns the path as a file URL. Default is `false`.
+  - `sync` (boolean): If `true`, directly returns an object with the paths of the user directories, otherwise returns a Promise. Default is `false`.
+  - `asFileLinks` (boolean): If `true`, returns the path as a file URL. Default is `false`.
 
 ## License
 
