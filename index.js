@@ -32,7 +32,7 @@ function getDownloadsPathSync () {
   try {
     const result = spawnSync('xdg-user-dir', ['DOWNLOAD'], { stdio: 'pipe' })
     const downloadsPath = result.stdout.toString().trim()
-    if (downloadsPath) return downloadsPath
+    if (downloadsPath && downloadsPath !== HOME_DIR) return downloadsPath
   } catch { /* ignore */ }
 
   try {
@@ -82,7 +82,7 @@ function getDownloadsPathAsync () {
     subprocess.on('exit', code => {
       if (code !== 0) return reject(new Error(`Subprocess exited with code ${code}`))
       const downloadsPath = stdout.toString().trim()
-      if (downloadsPath) resolve(downloadsPath)
+      if (downloadsPath && downloadsPath !== HOME_DIR) resolve(downloadsPath)
       else checkDefault()
     })
 
