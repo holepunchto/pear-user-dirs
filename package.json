@@ -44,11 +44,11 @@
   },
   "homepage": "https://github.com/holepunchto/pear-user-dirs",
   "dependencies": {
-    "bare-env": "^2.1.0",
-    "bare-fs": "^2.3.1",
-    "bare-os": "^2.4.0",
-    "bare-path": "^2.1.3",
-    "bare-subprocess": "^3.1.0",
+    "bare-env": "^3.0.0",
+    "bare-fs": "^4.0.0",
+    "bare-os": "^3.3.0",
+    "bare-path": "^3.0.0",
+    "bare-subprocess": "^5.0.0",
     "url-file-url": "^1.0.2",
     "which-runtime": "^1.2.0"
   },
