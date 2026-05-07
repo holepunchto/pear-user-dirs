@@ -48,7 +48,7 @@
     "bare-fs": "^4.0.1",
     "bare-os": "^3.3.1",
     "bare-path": "^3.0.0",
-    "bare-subprocess": "^5.0.2",
+    "bare-subprocess": "^6.0.0",
     "url-file-url": "^1.0.4",
     "which-runtime": "^1.2.1"
   },
